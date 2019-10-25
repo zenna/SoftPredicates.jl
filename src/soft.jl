@@ -1,13 +1,13 @@
-"Predicate Relaxation"
-module SoftPredicates
-
+module Soft
 using Spec
-# import Omega
-# import ForwardDiff  
+using ..Omega
+using ..Omega:TaggedΩ, tag, apl
+import Omega
+import ForwardDiff
 import Cassette
 using LinearAlgebra: norm
-using DocStringExtensions
 
+using DocStringExtensions
 export  d,
         SoftBool,
         softeq,
@@ -30,12 +30,12 @@ export  d,
         kf1β,
         withkernel,
         atα,
-        @atα
-        
-        # indomain,
-        # indomainₛ,
-        # applynotrackerr,
-        # applytrackerr
+        @atα,
+
+        indomain,
+        indomainₛ,
+        applynotrackerr,
+        applytrackerr
 
 abstract type AbstractSoftBool <: Real end
 const AbstractBool = Union{AbstractSoftBool, Bool}
@@ -45,7 +45,7 @@ include("kernels.jl")        # Kernels
 include("softbool.jl")       # Soft Boolean
 include("dualsoftbool.jl")   # Dual Soft Boolean
 include("distances.jl")      # Standard Distance Functions
-# include("trackerror.jl")     # Tracking error
+include("trackerror.jl")     # Tracking error
 include("any.jl")            # any, all
 
 # Using Dual Soft Bools
@@ -69,5 +69,16 @@ const >=ₛ = softgt
 const <=ₛ = softlt
 const <ₛ = softlt
 const ==ₛ = softeq
+
+# Lifts #
+  # Omega.lift(:softeq, 2)
+  # Omega.lift(:softeq, 3)
+  # Omega.lift(:softgt, 2)
+  # Omega.lift(:softlt, 2)
+  # Omega.lift(:logerr, 1)
+  # Omega.lift(:err, 1)
+  # Omega.lift(:kf1β, 1)
+  # Omega.lift(:kseα, 1)
+  # Omega.lift(:logkseα, 1)
 
 end
