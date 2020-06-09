@@ -54,8 +54,6 @@ Base.:|(x::SoftBool, y::SoftBool) = SoftBool(max(logerr(x), logerr(y)))
 # zt: FIXME abstractvector?
 Base.all(xs::Vector{<:SoftBool}) = SoftBool(minimum(logerr.(xs)))
 
-# Base.all(xs::Vector{<:RandVar}) = RandVar(all, (xs, ))
-
 # Arithmetic #
 Base.:*(x::SoftBool{T}, y::T) where T <: Real = SoftBool(x.logerr * y)
 Base.:*(x::T, y::SoftBool{T}) where T <: Real = SoftBool(x * y.logerr)

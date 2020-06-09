@@ -28,3 +28,5 @@ dsoftfalse(::Type{T} = Float64) where T = DualSoftBool(SoftBool(zero(T)), SoftBo
 # Arithmetic #
 Base.:*(x::DualSoftBool{SoftBool{T}}, y::T) where T <: Real = DualSoftBool(x.b0 * y, x.b1 * y)
 Base.:*(x::T, y::DualSoftBool{SoftBool{T}}) where T <: Real = DualSoftBool(x * y.b0, x * y.b1)
+
+Base.show(io::IO, x::DualSoftBool) = print(io, "ϵ:($(logerr(x.b0)), $(logerr(x.b1)))")

@@ -10,6 +10,7 @@ using DocStringExtensions
 
 export  d,
         SoftBool,
+        recursofteq,
         softeq,
         softlt,
         softgt,
@@ -42,10 +43,11 @@ const AbstractBool = Union{AbstractSoftBool, Bool}
 
 include("inf.jl")            # Infinity
 include("kernels.jl")        # Kernels
+include("kernelctx.jl")      # Kernels context
 include("softbool.jl")       # Soft Boolean
 include("dualsoftbool.jl")   # Dual Soft Boolean
 include("distances.jl")      # Standard Distance Functions
-# include("trackerror.jl")     # Tracking error
+include("recur.jl")          # Recursive
 include("any.jl")            # any, all
 
 # Using Dual Soft Bools
